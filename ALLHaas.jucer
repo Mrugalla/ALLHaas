@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="GbnTog" name="ALLHaas" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="Mrugalla"
+              pluginFormats="buildStandalone,buildVST3" pluginName="ALLHaas"
+              pluginDesc="Uses allpass filters to widen the signal." pluginManufacturer="Mrugalla"
+              pluginAUMainType="'aufx'" pluginVST3Category="Fx,Stereo" pluginVSTCategory="kPlugCategEffect">
+  <MAINGROUP id="J8ytLP" name="ALLHaas">
+    <GROUP id="{EC2185B1-B770-61A5-573C-7C287AE7D01F}" name="Source">
+      <FILE id="mo80Bl" name="XFade.h" compile="0" resource="0" file="Source/XFade.h"/>
+      <FILE id="WzzR2q" name="Layout.cpp" compile="1" resource="0" file="Source/Layout.cpp"/>
+      <FILE id="tltEbe" name="Layout.h" compile="0" resource="0" file="Source/Layout.h"/>
+      <FILE id="FiEziH" name="XYOscilloscope.cpp" compile="1" resource="0"
+            file="Source/XYOscilloscope.cpp"/>
+      <FILE id="wv4zKk" name="XYOscilloscope.h" compile="0" resource="0"
+            file="Source/XYOscilloscope.h"/>
+      <FILE id="Kj3DIV" name="Axioms.h" compile="0" resource="0" file="Source/Axioms.h"/>
+      <FILE id="CgO47y" name="Math.h" compile="0" resource="0" file="Source/Math.h"/>
+      <FILE id="hk46WX" name="Param.cpp" compile="1" resource="0" file="Source/Param.cpp"/>
+      <FILE id="c9fkYP" name="Param.h" compile="0" resource="0" file="Source/Param.h"/>
+      <FILE id="XWkN8F" name="AllHaas.cpp" compile="1" resource="0" file="Source/AllHaas.cpp"/>
+      <FILE id="bw8gZ2" name="AllHaas.h" compile="0" resource="0" file="Source/AllHaas.h"/>
+      <FILE id="M0mF1Y" name="Allpass.cpp" compile="1" resource="0" file="Source/Allpass.cpp"/>
+      <FILE id="CnXhk0" name="Allpass.h" compile="0" resource="0" file="Source/Allpass.h"/>
+      <FILE id="u5yRLQ" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="COcNjH" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="xlYsHo" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="xOHpS9" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="ALLHaas" enablePluginBinaryCopyStep="1"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="ALLHaas" enablePluginBinaryCopyStep="1"
+                       useRuntimeLibDLL="0"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="D:/PluginDevelopment/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="D:/PluginDevelopment/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2022>
+  </EXPORTFORMATS>
+</JUCERPROJECT>
