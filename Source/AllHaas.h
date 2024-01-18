@@ -66,6 +66,4 @@ namespace dsp
 
 /*
 
-implement crossfades for parameter changes
-
 */

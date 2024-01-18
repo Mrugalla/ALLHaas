@@ -6,32 +6,32 @@ namespace dsp
 {
 	///
 
-	AllpassTransposedDirectFormI::AllpassTransposedDirectFormI() :
+	AllpassFirstOrder::AllpassFirstOrder() :
 			y1(0.),
 			g(.5)
 		{}
 
-	void AllpassTransposedDirectFormI::reset() noexcept
+	void AllpassFirstOrder::reset() noexcept
 	{
 		y1 = 0.;
 	}
 
-	void AllpassTransposedDirectFormI::copyFrom(const AllpassTransposedDirectFormI& other) noexcept
+	void AllpassFirstOrder::copyFrom(const AllpassFirstOrder& other) noexcept
 	{
 		g = other.g;
 	}
 
-	void AllpassTransposedDirectFormI::updateParameters(double freqHz, double sampleRate) noexcept
+	void AllpassFirstOrder::updateParameters(double freqHz, double sampleRate) noexcept
 	{
 		const auto fc = std::tan(math::Pi * freqHz / sampleRate);
 		g = (fc - 1.) / (fc + 1.);
 	}
 
-	double AllpassTransposedDirectFormI::operator()(double x) noexcept
+	double AllpassFirstOrder::operator()(double x) noexcept
 	{
-		const auto y0 = y1 + g * x;
-		y1 = x - g * y0;
-		return y0;
+		auto y = y1 + g * x;
+		y1 = x - g * y;
+		return y;
 	}
 
 	///
@@ -61,17 +61,17 @@ namespace dsp
 		const auto k = std::tan(math::Pi * freq / fs);
 		const auto kk = k * k;
 		const auto kq = k / q;
-		const auto norm = 1.f / (1.f + kq + kk);
-		a0 = (1.f - kq + kk) * norm;
-		a1 = 2.f * (kk - 1.f) * norm;
-		a2 = 1.f;
+		const auto norm = 1. / (1. + kq + kk);
+		a0 = (1. - kq + kk) * norm;
+		a1 = 2. * (kk - 1.) * norm;
+		a2 = 1.;
 		b1 = a1;
 		b2 = a0;
 	}
 
 	double AllpassTransposedDirectFormII::operator()(double x) noexcept
 	{
-		const auto y = a0 * x + z1;
+		auto y = a0 * x + z1;
 		z1 = a1 * x - b1 * y + z2;
 		z2 = a2 * x - b2 * y;
 		return y;
@@ -79,13 +79,13 @@ namespace dsp
 
 	///
 
-	Allpass2ndOrderBiquad::Allpass2ndOrderBiquad() :
+	Allpass2ndOrderDirectFormI::Allpass2ndOrderDirectFormI() :
 		a0(0.), a1(0.), a2(0.), b1(0.), b2(0.),
 		x1(0.), x2(0.), y1(0.), y2(0.)
 	{
 	}
 
-	void Allpass2ndOrderBiquad::reset() noexcept
+	void Allpass2ndOrderDirectFormI::reset() noexcept
 	{
 		x1 = 0.;
 		x2 = 0.;
@@ -93,7 +93,7 @@ namespace dsp
 		y2 = 0.;
 	}
 
-	void Allpass2ndOrderBiquad::copyFrom(const Allpass2ndOrderBiquad& other) noexcept
+	void Allpass2ndOrderDirectFormI::copyFrom(const Allpass2ndOrderDirectFormI& other) noexcept
 	{
 		a0 = other.a0;
 		a1 = other.a1;
@@ -102,7 +102,7 @@ namespace dsp
 		b2 = other.b2;
 	}
 
-	void Allpass2ndOrderBiquad::updateParameters(double freqHz, double fs) noexcept
+	void Allpass2ndOrderDirectFormI::updateParameters(double freqHz, double fs) noexcept
 	{
 		const auto oc = math::Pi * freqHz / fs;
 		const auto bw = std::tan(oc);
@@ -116,9 +116,9 @@ namespace dsp
 		b2 = a0;
 	}
 
-	double Allpass2ndOrderBiquad::operator()(double x0) noexcept
+	double Allpass2ndOrderDirectFormI::operator()(double x0) noexcept
 	{
-		const auto yn =
+		auto yn =
 			a0 * x0
 			+ a1 * x1
 			+ a2 * x2
@@ -133,13 +133,13 @@ namespace dsp
 
 	///
 
-	Allpass2ndOrderBiquadBW::Allpass2ndOrderBiquadBW() :
+	Allpass2ndOrderDirectFormIBW::Allpass2ndOrderDirectFormIBW() :
 		a0(0.), a1(0.), a2(0.), b1(0.), b2(0.),
 		x1(0.), x2(0.), y1(0.), y2(0.)
 	{
 	}
 
-	void Allpass2ndOrderBiquadBW::reset() noexcept
+	void Allpass2ndOrderDirectFormIBW::reset() noexcept
 	{
 		x1 = 0.;
 		x2 = 0.;
@@ -147,7 +147,7 @@ namespace dsp
 		y2 = 0.;
 	}
 
-	void Allpass2ndOrderBiquadBW::copyFrom(const Allpass2ndOrderBiquadBW& other) noexcept
+	void Allpass2ndOrderDirectFormIBW::copyFrom(const Allpass2ndOrderDirectFormIBW& other) noexcept
 	{
 		a0 = other.a0;
 		a1 = other.a1;
@@ -156,9 +156,8 @@ namespace dsp
 		b2 = other.b2;
 	}
 
-	void Allpass2ndOrderBiquadBW::updateParameters(double freq, double q, double fs) noexcept
+	void Allpass2ndOrderDirectFormIBW::updateParameters(double freq, double q, double fs) noexcept
 	{
-
 		const auto K = std::tan(math::Pi * freq / fs);
 		const auto kk = K * K;
 		const auto norm = 1. / (1. + K / q + kk);
@@ -169,7 +168,7 @@ namespace dsp
 		b2 = a0;
 	}
 
-	double Allpass2ndOrderBiquadBW::operator()(double x0) noexcept
+	double Allpass2ndOrderDirectFormIBW::operator()(double x0) noexcept
 	{
 		const auto yn =
 			a0 * x0

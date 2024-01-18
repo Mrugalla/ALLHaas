@@ -14,6 +14,7 @@ namespace dsp
 	void AllHaas::prepare(double _sampleRate) noexcept
 	{
 		sampleRate = _sampleRate;
+		cutoffLeft = -1.;
 	}
 
 	void AllHaas::operator()(float* const* samples,

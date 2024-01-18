@@ -5,17 +5,16 @@
 namespace dsp
 {
 	/*
+	Canonical Direct Form II (TDF-II)
 	no bandwidth
-	numeric instability
-	modulation issues
 	*/
-	struct AllpassTransposedDirectFormI
+	struct AllpassFirstOrder
 	{
-		AllpassTransposedDirectFormI();
+		AllpassFirstOrder();
 
 		void reset() noexcept;
 
-		void copyFrom(const AllpassTransposedDirectFormI&) noexcept;
+		void copyFrom(const AllpassFirstOrder&) noexcept;
 
 		/* freqHz, sampleRate */
 		void updateParameters(double, double) noexcept;
@@ -26,8 +25,8 @@ namespace dsp
 	};
 
 	/*
-	numeric instability
-	modulation issues
+	Canonical Form II 2nd Order (TDF-II)
+	bad modulation
 	*/
 	struct AllpassTransposedDirectFormII
 	{
@@ -48,16 +47,20 @@ namespace dsp
 	};
 
 	/*
-	bad performance
+	Biquad 2nd Order Direct Form I
 	no bandwidth
+	bad performance
+	bad modulation
+	numeric instability
+	fixed-point friendly
 	*/
-	struct Allpass2ndOrderBiquad
+	struct Allpass2ndOrderDirectFormI
 	{
-		Allpass2ndOrderBiquad();
+		Allpass2ndOrderDirectFormI();
 
 		void reset() noexcept;
 
-		void copyFrom(const Allpass2ndOrderBiquad&) noexcept;
+		void copyFrom(const Allpass2ndOrderDirectFormI&) noexcept;
 
 		/* freqHz, sampleRate */
 		void updateParameters(double, double) noexcept;
@@ -70,15 +73,19 @@ namespace dsp
 	};
 
 	/*
+	Biquad 2nd Order Direct Form I
 	bad performance
+	bad modulation
+	numeric instability
+	fixed-point friendly
 	*/
-	struct Allpass2ndOrderBiquadBW
+	struct Allpass2ndOrderDirectFormIBW
 	{
-		Allpass2ndOrderBiquadBW();
+		Allpass2ndOrderDirectFormIBW();
 
 		void reset() noexcept;
 
-		void copyFrom(const Allpass2ndOrderBiquadBW&) noexcept;
+		void copyFrom(const Allpass2ndOrderDirectFormIBW&) noexcept;
 
 		/* freqHz, qHz, sampleRate */
 		void updateParameters(double, double, double) noexcept;
